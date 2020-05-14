@@ -31,10 +31,12 @@ var PacificaPopup = /** @class */ (function () {
             this.open();
         }
         if (this.options.closeOnClickOf) {
-            this.elements.overlay.querySelector(this.options.closeOnClickOf)
-                .addEventListener('click', function () {
-                _this.close();
-            });
+            if (this.options.closeOnClickOf == "this") {
+                this.bindCloseTo(this.elements.overlay);
+            }
+            else {
+                this.bindCloseTo(this.elements.overlay.querySelector(this.options.closeOnClickOf));
+            }
         }
         window.onscroll = function () {
             _this.isOpen ? window.scrollTo(0, 0) : null;
@@ -75,6 +77,7 @@ var PacificaPopup = /** @class */ (function () {
     };
     PacificaPopup.prototype.build = function () {
         var overlay = document.createElement('DIV');
+        overlay.setAttribute('pacifica-popup', 'true');
         var popup = document.createElement('DIV');
         popup.innerHTML = this.options.html;
         css(overlay, this.overlayStyle);
