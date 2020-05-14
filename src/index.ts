@@ -55,10 +55,11 @@ class PacificaPopup{
 
 		if(this.options.closeOnClickOf){
 
-			this.elements.overlay.querySelector(this.options.closeOnClickOf)
-				.addEventListener('click',()=>{
-					this.close()
-				})
+			if (this.options.closeOnClickOf == "this") {
+				this.bindCloseTo(this.elements.overlay)
+			}else{
+				this.bindCloseTo(this.elements.overlay.querySelector(this.options.closeOnClickOf))
+			}
 		}
 
 		window.onscroll =  ()=> {
@@ -118,6 +119,7 @@ class PacificaPopup{
 	private build(){
 
 		var overlay=document.createElement('DIV')
+		overlay.setAttribute('pacifica-popup','true')
 		var popup=document.createElement('DIV')
 		popup.innerHTML=this.options.html
 
