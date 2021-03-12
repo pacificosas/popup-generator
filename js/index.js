@@ -76,10 +76,29 @@ var PacificaPopup = /** @class */ (function () {
         }
     };
     PacificaPopup.prototype.build = function () {
+        var _this = this;
         var overlay = document.createElement('DIV');
         overlay.setAttribute('pacifica-popup', 'true');
         var popup = document.createElement('DIV');
         popup.innerHTML = this.options.html;
+        if (this.options.closeBtn) {
+            var btn = document.createElement("span");
+            btn.innerHTML = "&#215;";
+            btn.addEventListener("click", function () { _this.close(); });
+            css(btn, {
+                position: "absolute",
+                top: "5px",
+                right: "5px",
+                fontSize: "2rem",
+                background: "rgba(0, 0, 0, 0.18) ",
+                padding: ".3em",
+                lineHeight: ".6em",
+                borderRadius: "100px",
+                cursor: "pointer",
+                color: "white"
+            });
+            popup.append(btn);
+        }
         css(overlay, this.overlayStyle);
         css(popup, this.popupStyle);
         this.elements = { overlay: overlay, popup: popup };

@@ -8,6 +8,7 @@ Generate and customize popups with javascript
 			html:'<h1>Im the popup</h1><button>cerrar</button>',
 			open:true,
 			closeOnClickOf:'button',
+			closeBtn:true,
 			popupCss:{
 				default:{
 					background:'red',
@@ -35,7 +36,10 @@ Generate and customize popups with javascript
 
 - **open** : `boolean` `optional` open popup in class initilization
 
-- **closeOnClickOf** : `string` `optional` css selector of element inside the popup. when it have been click the popup will close.
+- **closeOnClickOf** : `string` `optional` css selector of element inside the
+  popup. when it have been click the popup will close.
+
+- **closeBtn** : `boolean` boleano para crear o no un boton de cierre en el popup
 
 - **overlayCss** : `javascript object` `optional`
 

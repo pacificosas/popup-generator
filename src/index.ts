@@ -1,9 +1,10 @@
-import { css } from './css'
+import { css } from './css';
 
 interface IpopupOptions{
 	open:boolean;
 	closeOnClickOf:string;
 	html:string;
+	closeBtn:boolean,
 	overlaycolor:string;
 	overlayCss?:any;
 	popupCss?:any;
@@ -122,6 +123,28 @@ class PacificaPopup{
 		overlay.setAttribute('pacifica-popup','true')
 		var popup=document.createElement('DIV')
 		popup.innerHTML=this.options.html
+
+		
+		if(this.options.closeBtn){
+			
+			var btn=document.createElement("span")
+			btn.innerHTML="&#215;"
+			btn.addEventListener("click",()=>{this.close()})
+			css(btn,{
+				position:"absolute",
+				top:"5px",
+				right:"5px",
+				fontSize:"2rem",
+				background:"rgba(0, 0, 0, 0.18) ",
+				padding:".3em",
+				lineHeight:".6em",
+				borderRadius:"100px",
+				cursor:"pointer",
+				color:"white"
+
+			})
+			popup.append(btn)
+		}
 
 		css(overlay,this.overlayStyle)
 		css(popup,this.popupStyle)
